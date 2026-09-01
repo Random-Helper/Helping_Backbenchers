@@ -1,0 +1,137 @@
+<!DOCTYPE>
+<HTML><HEAD>
+<TITLE>COMPUTER NOTES</TITLE>
+<style>
+p {width: 70%; line-height: 1.6;}
+h1{text-align: center;}
+h1, h2, h3, h4, h5 {font-style: italic;}
+.container 
+{max-width: 1000px;
+margin: auto;
+background: white;
+padding: 20px;
+border-radius: 10px;}
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-size: 14px;
+    opacity: 0.5;
+    width: auto;
+}
+body::before {
+    content: "HELPING BACKBENCHERS";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 60px;
+    font-weight: bold;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+}
+</style></head>
+<BODY>
+<div class="container">
+<H1>CHAPTER 9 Iterative Statements in Python</H1>
+<I>The longest and most annoying chapter for most😮‍💨😮‍💨</I>
+<p>so we start with</p>
+
+<h3>Arithmetic Operators</h3>
+<ul>
+<li>Addition(+), used to find the sums of given data values</li>
+<li>Subtraction(-), finds the difference ----</li>
+<li>Multiply(*), find the product ----</li>
+<li>Division(/), divides and gives the quotient in <b>decimal</b> form</li>
+<li>Integer Division(//), divides and gives the quotient in <b>integer</b> form</li>
+<li>Modulus(%), gives the remainder after division</li>
+<li>Exponentiation(**), raises one number to the power of another</li>
+</ul>
+
+<h3>String Operators</h3>
+<p>String basically means words/letter it can include number but they will also be treated as characters/letters, integer means a whole number but it dosent include decimals just numbers, decimals are included in float along with numbers.</p>
+<p>String operators are used to perform operations on strings.The <b>concatination(+)</b> operator is used to join strings, while the <b>Replication(*)</b> operator is used to repeat a string multiple times.</p>
+<pre> a = "Hello " b = "World" print(a + b) print("Hi " * 3) </pre>
+<p>The first one results to HelloWorld while the second one results to HiHiHi</p>
+
+<h3>Assignment Operators</h3>
+<p>Assignment operators are used to assign values to variables.Other assignment operators combine an arithmetic operation with assignment.</p>
+<ul> 
+<li><b>=</b> — Assigns a value to a variable.</li>
+<li><b>+=</b> — Adds a value and assigns the result.</li>
+<li><b>-=</b> — Subtracts a value and assigns the result.</li>
+<li><b>*=</b> — Multiplies a value and assigns the result.</li>
+<li><b>/=</b> — Divides a value and assigns the result.</li>
+</ul>
+
+<h3>Relational Operators</h3>
+<p>Relational operators are used to compare two values. The result of a relational operation is either <b>True</b> or <b>False</b>.</p>
+<ul>
+<li><b>&lt;</b> — Less than</li>
+<li><b>&gt;</b> — Greater than</li>
+<li><b>&lt;=</b> — Less than or equal to</li>
+<li><b>&gt;=</b> — Greater than or equal to</li>
+<li><b>!=</b> — Not equal to</li>
+<li><b>==</b> — Equal to</li>
+</ul>
+
+<h3>Logical and Boolean Operators</h3>
+<p>Logical operators are used to combine or modify conditions. Python has three logical operators: <b>and</b>, <b>or</b>, and <b>not</b>. They work with Boolean values, which are <b>True</b> or <b>False</b>.</p>
+<ul>
+<li><b>and</b> — Returns True when both conditions are True.</li>
+<li><b>or</b> — Returns True when at least one condition is True.</li>
+<li><b>not</b> — If the condition is true it shows false, and if false it shows true.</li>
+</ul>
+<hr>
+
+<h2>Control Statements</h2>
+<p>As the name suggests Control statements are used to control the flow of execution of a Python program. They allow a program to make decisions based on conditions.</p>
+<h3>if Statement</h3>
+<p>The <b>if</b> statement executes a block of code only when the given condition is True.</p>
+<pre>age = 18
+
+if age >= 18:
+    print("Eligible")
+</pre>
+<h3>if-else Statement</h3>
+<p>The <b>if-else</b> statement provides two choices. The <b>if</b> block is executed when the condition is True, otherwise the <b>else</b> block is executed.</p>
+<pre>age = 18
+
+if age >= 18:
+    print("Eligible")
+else:
+    print("Not Eligible")
+</pre>
+<h3>if-elif-else Statement</h3> <p>The <b>if-elif-else</b> statement is used when there are multiple conditions. Python checks the conditions one by one and executes the block belonging to the first condition that is True. If none of the conditions are True, the <b>else</b> block is executed.</p>
+<pre> marks = 75 if marks >= 90:
+   print("Topper") 
+elif marks >= 60:
+   print("Average") 
+else: 
+   print("Study") 
+</pre>
+
+<h2>Loops</h2>
+<i>Hardest topic in my opinion</i>
+<p>Loops are used to repeat a set of statements multiple times. Python provides <b>for</b> and <b>while</b> loops for performing iteration.</p>
+<h3>For Loop</h3> <p>A <b>for loop</b> is used to repeat a block of statements for each value in a sequence. It is commonly used with the <b>range()</b> function.</p>
+<p>The <b>range function</b> gives a range of number to use, typically in a for loop. It does not include the last number.</p>
+<pre>for i in range(1, 6):
+    print(i)
+</pre>
+<p>This will print the numbers 1 to 5 and will exclude 6.</p>
+<h3>While Loop</h3>
+<p>A <b>while loop</b> repeatedly executes a block of statements as long as the given condition is True.</p>
+<pre>i = 1
+
+while i <= 5:
+    print(i)
+    i += 1
+</pre>
+<p>This will print the numbers starting from one adding 1 after each time and will stop when the condition becomes false, in this case at 5.</p>
+<hr>
+<p style="text-align: center;">Took me hours hope you appreciate it</p>
+<p class="watermark"><i>Made by Tushar</i></p>
+<p style="text-align: center;"><i>Made by a backbencher, for backbenchers ❤️</i></p>
+</div></body></html>
