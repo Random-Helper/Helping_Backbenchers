@@ -3,6 +3,23 @@
 <title>Helping Backbenchers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+.menu-button {position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1001;}
+.side-menu {position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: white;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    z-index: 1000;}
+  .side-menu a {display: block;margin: 20px 0;font-size: 20px;text-decoration: none;color: black;}
 body {font-family: Arial;margin: 15px;background: #f4f6f8;}
 .about{font-size:18px;}
 .ending{font-size:20px;}
@@ -16,6 +33,11 @@ p{font-size:16px;}
 .watermark{font-size:10px;}}
 </style>
 </head><body>
+<div class="menu-button" onclick="openMenu()">☰</div>
+<div class="side-menu" id="sideMenu">
+    <a href="reviews.html">⭐ Reviews</a>
+    <a href="credits.html">👤 Credits</a>
+</div>
 <p class="watermark">Made by Tushar</p>
 <h1 align="center">HELPING BACKBENCHERS</h1>
 <hr>
@@ -42,4 +64,14 @@ p{font-size:16px;}
 </div>
 <hr>
 <p align="center" class="ending"><b>Made by a student, for students ❤️</b></p>
+<script>
+function openMenu() {
+    var menu = document.getElementById("sideMenu");
+
+    if (menu.style.left === "0px") {
+        menu.style.left = "-250px";} 
+    else {menu.style.left = "0px";}}
+</script>
 </body></html>
+
+
