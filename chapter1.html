@@ -1,21 +1,45 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <HTML><HEAD>
 <TITLE>COMPUTER NOTES</TITLE>
 <style>
-p {width: 70%;line height: 1.6;}
+p {width: 100%; line-height: 1.6;}
 h1{text-align: center;}
 h1, h2, h3, h4, h5 {font-style: italic;}
 .container 
-{max-width: 1000px;
+{width: 90%;
+max-width: 1000px;
 margin: auto;
 background: white;
 padding: 20px;
-border-radius: 10px;}
-</style>
-<style>
-BODY{font-family: Arial, sans-serif;margin: 30px;}
-</style></HEAD>
-
+border-radius: 10px;
+box-sizing: border-box;}
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-size: 14px;
+    opacity: 0.5;
+    width: auto;}
+body {font-family: Arial, sans-serif;margin: 10px;background: #f4f6f8;}
+body::before 
+    {content: "HELPING BACKBENCHERS";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 60px;
+    font-weight: bold;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;}
+@media (max-width: 600px) {
+    h1 {font-size: 28px;}
+    h2 {font-size: 22px;}
+    p {font-size: 16px;}
+    .watermark {font-size: 10px;}
+    .container {width: 95%;
+    padding: 15px;}}
+</style></head>
 <BODY>
 <div class="container">
 <H1>CHAPTER 1 Popular E-services</H1>
@@ -29,19 +53,16 @@ They allow users to access information and perform tasks online.
 <li>Internet Connection</li>
 <li>Computer, Laptop, Tablet, or Mobile Device</li>
 </ul>
-
 <hr>
 <h4>E-Learning</h4>
 <p>
 E-Learning is a method of learning through the internet using digital devices.
 Students can access study materials and attend classes online.
 </p>
-
 <h5>Portals Providing E-Services</h5>
 <ul>
 <li>DIKSHA</li><li>SWAYAM</li><li>Coursera</li><li>Udemy</li>
 </ul>
-
 <img src="htmlmeme.jpg" width="400" align="right">
 <h5>LMS (Learning Management System)</h5>
 <p>
@@ -50,7 +71,6 @@ An LMS is software used to create, manage, and deliver online courses.
 <p><b>Examples:</b> Google Classroom, Moodle, Canvas</p>
 <h5>Advantages of E-Learning</h5>
 <ul>
-
 <li>Cost Effective</li>
 <li>Self-Paced Learning</li>
 <li>Flexible</li>
@@ -58,18 +78,19 @@ An LMS is software used to create, manage, and deliver online courses.
 <li>Effective Management</li>
 </ul>
 <h5>Disadvantages of E-Learning</h5>
-
 <ul>
-<li>No Control Over Learners</li> <li>Lack of Practical Skills that students would learn in a traditional classroom.</li>
-<li>Lack of Interaction between the teacher and the students</li><li>Lack of Authenticity</li>
-<li>Dependence on Technology</li><li>Health Problems because of excess screen time.</li>
+<li>No Control Over Learners</li>
+<li>Lack of Practical Skills that students would learn in a traditional classroom.</li>
+<li>Lack of Interaction between the teacher and the students</li>
+<li>Lack of Authenticity</li>
+<li>Dependence on Technology</li>
+<li>Health Problems because of excess screen time.</li>
 </ul>
 <hr>
 <h4>E-Banking</h4>
 <p>
 E-Banking is the use of electronic devices and the internet to access banking services.
 </p>
-
 <h5>Types of E-Banking</h5>
 <p><b>1. Internet Banking</b><br>
 Banking services provided through a bank's website.<br>
@@ -79,7 +100,6 @@ Services: Fund transfer, bill payment, account balance inquiry.
 Banking services provided through mobile apps.<br>
 Services: Money transfer, recharge, bill payment, account management.
 </p>
-
 <p><b>3. Phone Banking</b><br>
 Banking services provided through phone calls.<br>
 Services: Balance inquiry, account information, customer support.
@@ -97,7 +117,6 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <li>Quick Transactions</li>
 <li>Reduced Paperwork</li>
 </ul>
-
 <h5>Disadvantages of E-Banking</h5>
 <ul>
 <li>Backdoor Attacks</li>
@@ -108,8 +127,6 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <h2>E-Shopping</h2>
 <p>The process of buying products and services through the internet from various retailers and marketplaces.Popular comapaines offering E-Shopping are Flipkart, Amazon and Blinkit.</p>
 <h3>Advantages of E-Shopping</h3>
-
-
 <ul>
 <li>Easier to purchase goods from the comfort of your house.</li>
 <li>24/7 accessibility</li>
@@ -117,7 +134,6 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <li>Direct delivery of products at home</li>
 <li>Easy exchange policies</li>
 </ul>
-
 <h3>Disadvantages of E-Shopping</h3>
 <ul>
 <li>Lack of personal touch, E-Shopping lacks real touch and the ability to try the products.</li>
@@ -125,7 +141,6 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <li>Transportation cost, some sites charge extra fees for delivering the products.</li>
 <li>Online fraud, some sites sell items for cheap but customers often recieve low quality products</li>
 </ul>
-
 <hr>
 <h2>E-Reservation</h2>
 <p>Ever gone on vacations? I bet usually to nani's house;) but the process by which you book a service through the internet is called E-Reservation, for example booking tickets of train, bus, flights and even hotels.</p>
@@ -137,21 +152,18 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <li>Easy to change or cancel the booking via internet</li>
 <li>Safe and reliable</li>
 </ul><br>
-
 <p>Btw guys there were no disadvantages given in the the book and I dont think the reservation process is important.2 topics left!!!!</p>
 <hr>
 <h2>E-Jobs</h2>
 <p>Jobs, something u dont have lol anyways E-Jobs refer to employment opportunities that allow individuals to work from a location outside the traditional office setting using internet.</p>
 <h3>Advantages of E-Jobs</h3>
 <ul>
-
 <li>Easy to find jobs while sitting at home.</li>
 <li>They offer a variety of opportunities for job seekers.</li>
 <li>They  assist employers to find suitable candidates.</li>
 <li>Employer can post job listing, view, and filter candidates according to their need.</li>
 </ul><br>
 <h3>Disadvantages of E-Jobs</h3>
-
 <ul>
 <li>Job portals recieve plenty of job applications cauing intence competition.</li>
 <li>Lack of a face-to-face interaction.so the personal connection between the job seeker and employer isint formed.</li>
@@ -159,4 +171,5 @@ Services: Cash withdrawal, balance inquiry, mini statement, cash deposit.
 <li>Some job portal are region-specific reducing potential oppertunities for job seekers</li>
 </ul>
 <hr>
-</div></BODY></HTML>
+</div>
+</BODY></HTML>
