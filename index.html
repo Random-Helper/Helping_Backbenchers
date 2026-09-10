@@ -4,6 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <style>
+    .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;}
+.sidebar-logo {width: 40px;height: 40px;margin-right: 10px;}
+.sidebar-title {font-size: 22px;font-weight: bold;}
     .sidebar-title {
   background: linear-gradient(90deg, #4facfe, #00f2fe);
   color: white;
@@ -55,7 +62,10 @@ p{font-size:16px;}
 </head><body>
 <div class="menu-button" onclick="openMenu()">☰</div>
 <div class="side-menu" id="sideMenu">
-    <h2 class="sidebar-title">Helping Backbenchers</h2>
+    <div class="sidebar-header">
+        <img src="logo.png" alt="Logo" class="sidebar-logo">
+        <h2 class="sidebar-title">Helping Backbenchers</h2>
+    </div>
     <a href="reviews.html">⭐ Reviews</a>
     <a href="credits.html">👤 Credits</a>
     <a href="tests.html">📝 Tests</a>
