@@ -3,6 +3,21 @@
 <TITLE>COMPUTER NOTES</TITLE>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <style>
+body::before
+{content:"";
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:500px;
+height:500px;
+background-image:url("Logo.jpg");
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+opacity:0.08;
+z-index:0;
+pointer-events:none;}
 p {width: 100%; line-height: 1.6;}
 h1{text-align: center;}
 .container 
@@ -21,18 +36,6 @@ box-sizing: border-box;}
     opacity: 0.5;
     width: auto;}
 body {font-family: Arial, sans-serif;margin: 10px;background: #f4f6f8;}
-body::before 
-    {content: "HELPING BACKBENCHERS";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 60px;
-    font-weight: bold;
-    opacity: 0.08;
-    z-index: 0;
-    pointer-events: none;}
-
 @media (max-width: 600px) {
     h1 {font-size: 28px;}
     h2 {font-size: 22px;}
