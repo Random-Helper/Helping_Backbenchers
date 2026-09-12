@@ -231,6 +231,22 @@
       <label><input type="radio" name="q20" value="c"> while i = 5:</label><br>
       <label><input type="radio" name="q20" value="d"> range for i(5):</label>
   </div>
-
+<button onclick="checkAnswers()">Submit Test</button>
+<p id="result"></p>
   </div>
+<script>
+function checkAnswers() {
+    var answers = {
+        q1:"d", q2:"c", q3:"a", q4:"b", q5:"b",
+        q6:"b", q7:"c", q8:"c", q9:"a", q10:"a",
+        q11:"b", q12:"a", q13:"b", q14:"a", q15:"c",
+        q16:"b", q17:"b", q18:"a", q19:"b", q20:"a"};
+    var score = 0;
+    for (var q in answers) {
+        var selected = document.querySelector('input[name="' + q + '"]:checked');
+        if (selected && selected.value === answers[q]) {
+            score++;}}
+    document.getElementById("result").innerHTML =
+        "Your Score: " + score + "/20";}
+</script>
 </body></html>
