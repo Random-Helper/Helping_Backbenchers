@@ -55,66 +55,48 @@ canvas.addEventListener("click",function(){
 jump();});
 function drawPlayer(){
 
-ctx.save();
-
 var x=player.x;
 var y=player.y;
 
 /* Shadow */
-ctx.fillStyle="rgba(0,0,0,0.2)";
+ctx.fillStyle="rgba(0,0,0,0.15)";
 ctx.beginPath();
-ctx.ellipse(x+18,y+52,22,5,0,0,Math.PI*2);
+ctx.ellipse(x+18,y+55,20,4,0,0,Math.PI*2);
 ctx.fill();
 
 /* Hair */
-ctx.fillStyle="#241b18";
-ctx.fillRect(x+7,y-18,24,8);
-ctx.fillRect(x+4,y-12,30,10);
+ctx.fillStyle="#292929";
+ctx.fillRect(x+6,y-18,26,7);
+ctx.fillRect(x+3,y-12,32,9);
 
 /* Face */
 ctx.fillStyle="#f2c29b";
-ctx.fillRect(x+8,y-8,23,22);
+ctx.fillRect(x+8,y-5,24,20);
 
 /* Eyes */
-ctx.fillStyle="#111";
-ctx.fillRect(x+13,y-2,4,4);
-ctx.fillRect(x+23,y-2,4,4);
+ctx.fillStyle="#222";
+ctx.fillRect(x+13,y+2,4,4);
+ctx.fillRect(x+23,y+2,4,4);
 
 /* Shirt */
-ctx.fillStyle="#315c99";
-ctx.fillRect(x+5,y+14,27,24);
-
-/* Shirt detail */
-ctx.fillStyle="#f5d76e";
-ctx.fillRect(x+16,y+14,5,24);
+ctx.fillStyle="#3b6aa5";
+ctx.fillRect(x+5,y+15,27,24);
 
 /* Arms */
 ctx.fillStyle="#f2c29b";
-ctx.fillRect(x,y+17,6,18);
-ctx.fillRect(x+31,y+17,6,18);
+ctx.fillRect(x,y+17,5,18);
+ctx.fillRect(x+32,y+17,5,18);
 
 /* Pants */
-ctx.fillStyle="#222";
-ctx.fillRect(x+7,y+38,10,14);
-ctx.fillRect(x+21,y+38,10,14);
+ctx.fillStyle="#252525";
+ctx.fillRect(x+7,y+39,10,14);
+ctx.fillRect(x+21,y+39,10,14);
 
 /* Shoes */
-ctx.fillStyle="#eee";
-ctx.fillRect(x+4,y+50,14,5);
-ctx.fillRect(x+20,y+50,14,5);
-
-ctx.restore();
+ctx.fillStyle="#eeeeee";
+ctx.fillRect(x+4,y+52,14,4);
+ctx.fillRect(x+20,y+52,14,4);
 }
-ctx.fillStyle="#222";
-ctx.fillRect(player.x+8,player.y-15,20,20);
-ctx.fillStyle="#315c99";
-ctx.fillRect(player.x+5,player.y+5,25,25);
-ctx.fillStyle="#222";
-ctx.fillRect(player.x+5,player.y+30,8,20);
-ctx.fillRect(player.x+22,player.y+30,8,20);
-ctx.fillStyle="#f5c6a5";
-ctx.fillRect(player.x+12,player.y-12,4,4);
-ctx.fillRect(player.x+21,player.y-12,4,4);}
 function drawObstacle(){
 ctx.fillStyle="#8b5a2b";
 ctx.fillRect(obstacle.x,obstacle.y,obstacle.width,obstacle.height);}
