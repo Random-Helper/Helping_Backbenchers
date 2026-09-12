@@ -23,9 +23,9 @@ var canvas=document.getElementById("game");
 var ctx=canvas.getContext("2d");
 var player={
 x:80,
-y:300,
-width:35,
-height:50,
+y:285,
+width:45,
+height:65,
 velocity:0,
 jumping:false};
 var obstacle={
@@ -59,43 +59,61 @@ var x=player.x;
 var y=player.y;
 
 /* Shadow */
-ctx.fillStyle="rgba(0,0,0,0.15)";
+ctx.fillStyle="rgba(0,0,0,0.18)";
 ctx.beginPath();
-ctx.ellipse(x+18,y+55,20,4,0,0,Math.PI*2);
+ctx.ellipse(x+23,y+67,22,5,0,0,Math.PI*2);
 ctx.fill();
 
 /* Hair */
-ctx.fillStyle="#292929";
-ctx.fillRect(x+6,y-18,26,7);
-ctx.fillRect(x+3,y-12,32,9);
+ctx.fillStyle="#252525";
+ctx.fillRect(x+9,y-23,27,7);
+ctx.fillRect(x+5,y-17,35,12);
+ctx.fillRect(x+9,y-27,20,5);
 
 /* Face */
-ctx.fillStyle="#f2c29b";
-ctx.fillRect(x+8,y-5,24,20);
+ctx.fillStyle="#f3c39f";
+ctx.fillRect(x+10,y-5,27,23);
+
+/* Ears */
+ctx.fillRect(x+7,y,4,10);
+ctx.fillRect(x+36,y,4,10);
 
 /* Eyes */
 ctx.fillStyle="#222";
-ctx.fillRect(x+13,y+2,4,4);
-ctx.fillRect(x+23,y+2,4,4);
+ctx.fillRect(x+16,y+3,4,5);
+ctx.fillRect(x+28,y+3,4,5);
+
+/* Hair fringe */
+ctx.fillStyle="#252525";
+ctx.fillRect(x+9,y-8,8,7);
+ctx.fillRect(x+27,y-8,10,7);
 
 /* Shirt */
-ctx.fillStyle="#3b6aa5";
-ctx.fillRect(x+5,y+15,27,24);
+ctx.fillStyle="#3b69a6";
+ctx.fillRect(x+7,y+18,31,27);
+
+/* Shirt collar */
+ctx.fillStyle="#31598d";
+ctx.fillRect(x+17,y+18,11,5);
 
 /* Arms */
-ctx.fillStyle="#f2c29b";
-ctx.fillRect(x,y+17,5,18);
-ctx.fillRect(x+32,y+17,5,18);
+ctx.fillStyle="#f3c39f";
+ctx.fillRect(x+1,y+20,7,21);
+ctx.fillRect(x+37,y+20,7,21);
+
+/* Hands */
+ctx.fillRect(x+1,y+39,7,6);
+ctx.fillRect(x+37,y+39,7,6);
 
 /* Pants */
-ctx.fillStyle="#252525";
-ctx.fillRect(x+7,y+39,10,14);
-ctx.fillRect(x+21,y+39,10,14);
+ctx.fillStyle="#292929";
+ctx.fillRect(x+9,y+45,12,19);
+ctx.fillRect(x+25,y+45,12,19);
 
 /* Shoes */
-ctx.fillStyle="#eeeeee";
-ctx.fillRect(x+4,y+52,14,4);
-ctx.fillRect(x+20,y+52,14,4);
+ctx.fillStyle="#f1f1f1";
+ctx.fillRect(x+5,y+62,17,6);
+ctx.fillRect(x+24,y+62,17,6);
 }
 function drawObstacle(){
 ctx.fillStyle="#8b5a2b";
