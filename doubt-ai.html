@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doubt AI - Helping Backbenchers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;margin:10px;background:#f4f6f8;}
+.container{width:90%;max-width:800px;margin:40px auto;background:white;padding:20px;border-radius:10px;box-sizing:border-box;}
+h1{text-align:center;font-family:'Poppins',Arial,sans-serif;}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;font-size:16px;}
+button{padding:12px 20px;background:black;color:white;border:0;border-radius:8px;cursor:pointer;}
+#answer{margin-top:20px;padding:15px;background:#f4f6f8;border-radius:10px;white-space:pre-wrap;}
+.back{display:inline-block;margin-top:20px;padding:10px 18px;background:black;color:white;text-decoration:none;border-radius:8px;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🤖 Doubt AI</h1>
+<p>Ask a school-related question and AI will explain it simply.</p>
+<label>Class:</label>
+<select id="studentClass">
+<option value="8" selected>Class 8</option>
+
+</select>
+<label>Subject:</label>
+<select id="subject">
+<option>Mathematics</option>
+<option>Computer Science</option>
+<option>Science</option>
+<option>English</option>
+<option>Social Science</option>
+</select>
+<label>Your Question:</label>
+<textarea id="question" rows="5" placeholder="Type your doubt here..."></textarea>
+<button onclick="askDoubt()">Ask AI 🤖</button>
+<div id="answer"></div>
+<a class="back" href="index.html">← Back to Home</a>
+</div>
+<script>
+async function askDoubt() {
+    var question = document.getElementById("question").value;
+    var studentClass = document.getElementById("studentClass").value;
+    var subject = document.getElementById("subject").value;
+    var answer = document.getElementById("answer");
+    if (!question.trim()) {
+        answer.innerHTML = "Please enter a question.";
+        return;}
+    answer.innerHTML = "🤔 Thinking...";
+    try {var response = await fetch("YOUR_BACKEND_URL/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"},
+            body: JSON.stringify({
+                question: question,
+                class: studentClass,
+                subject: subject})});
+        var data = await response.json();
+        if (data.success) {
+            answer.innerHTML = data.answer;} else {answer.innerHTML = data.error;}} catch (error) 
+{answer.innerHTML = "Could not connect to the AI.";}}
+</script>
+
+</body>
+</html>
