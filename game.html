@@ -131,7 +131,7 @@ border-width:2px;
 
 <button onclick="restart()">🔄 Restart</button>
 <a class="back" href="index.html">← Back to Home</a>
-
+<button id="superJumpButton" onclick="superJump()">🚀 SUPER JUMP</button>
 <script>
 
 var canvas=document.getElementById("game");
@@ -149,6 +149,8 @@ var best=Number(localStorage.getItem("backbenchBest"))||0;
 var speed=6;
 var distance=0;
 var animation=0;
+var superJumpCooldown=0;
+var superJumpCooldownTime=600;
 
 var player={
 x:105,
@@ -161,14 +163,14 @@ jumping:false
 
 var obstacle={
 x:900,
-y:505,
+y:515,
 width:70,
 height:80
 };
 
 var spikes={
 x:1250,
-y:535,
+y:545,
 width:90,
 height:50
 };
@@ -178,14 +180,29 @@ var coins=[
 {x:1130,y:390,collected:false},
 {x:1210,y:430,collected:false}
 ];
-
+   
+function superJump(){
+if(!gameStarted||gameOver)return;
+if(superJumpCooldown<=0&&!player.jumping){
+player.velocity=-24;
+player.jumping=true;
+superJumpCooldown=superJumpCooldownTime;}}
 function jump(){
 
-if(!gameStarted){
-gameStarted=true;
-return;
+if(!gameStarted){gameStarted=true;return;}
+if(superJumpCooldown>0){
+superJumpCooldown--;
 }
 
+var superButton=document.getElementById("superJumpButton");
+
+if(superJumpCooldown<=0){
+superButton.innerHTML="🚀 SUPER JUMP";
+superButton.disabled=false;
+}else{
+superButton.innerHTML="⏳ RELOAD: "+Math.ceil(superJumpCooldown/60)+"s";
+superButton.disabled=true;
+}
 if(gameOver)return;
 
 if(!player.jumping){
