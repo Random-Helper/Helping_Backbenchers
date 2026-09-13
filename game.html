@@ -189,10 +189,11 @@ player.jumping=true;
 superJumpCooldown=superJumpCooldownTime;}}
 function jump(){
 
-if(!gameStarted){gameStarted=true;return;}
 if(superJumpCooldown>0){
 superJumpCooldown--;
 }
+
+if(!gameStarted||gameOver)return;
 
 var superButton=document.getElementById("superJumpButton");
 
