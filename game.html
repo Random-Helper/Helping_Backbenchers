@@ -73,6 +73,11 @@ font-size:15px;
 cursor:pointer;
 }
 
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
 .back{
 display:inline-block;
 margin:10px;
@@ -132,6 +137,7 @@ border-width:2px;
 <button onclick="restart()">🔄 Restart</button>
 <a class="back" href="index.html">← Back to Home</a>
 <button id="superJumpButton" onclick="superJump()">🚀 SUPER JUMP</button>
+
 <script>
 
 var canvas=document.getElementById("game");
@@ -149,12 +155,13 @@ var best=Number(localStorage.getItem("backbenchBest"))||0;
 var speed=6;
 var distance=0;
 var animation=0;
+
 var superJumpCooldown=0;
 var superJumpCooldownTime=600;
 
 var player={
 x:105,
-y:510,
+y:485,
 width:70,
 height:100,
 velocity:0,
@@ -180,54 +187,75 @@ var coins=[
 {x:1130,y:390,collected:false},
 {x:1210,y:430,collected:false}
 ];
-   
-function superJump(){
-if(!gameStarted||gameOver)return;
-if(superJumpCooldown<=0&&!player.jumping){
-player.velocity=-24;
-player.jumping=true;
-superJumpCooldown=superJumpCooldownTime;}}
+
+
+/* =========================
+   JUMP
+========================= */
+
 function jump(){
 
-if(superJumpCooldown>0){
-superJumpCooldown--;
+if(!gameStarted){
+gameStarted=true;
+return;
 }
 
-if(!gameStarted||gameOver)return;
-
-var superButton=document.getElementById("superJumpButton");
-
-if(superJumpCooldown<=0){
-superButton.innerHTML="🚀 SUPER JUMP";
-superButton.disabled=false;
-}else{
-superButton.innerHTML="⏳ RELOAD: "+Math.ceil(superJumpCooldown/60)+"s";
-superButton.disabled=true;
-}
 if(gameOver)return;
 
 if(!player.jumping){
 player.velocity=-16;
 player.jumping=true;
 }
+
 }
+
+
+/* =========================
+   SUPER JUMP
+========================= */
+
+function superJump(){
+
+if(!gameStarted||gameOver)return;
+
+if(superJumpCooldown<=0&&!player.jumping){
+
+player.velocity=-24;
+player.jumping=true;
+
+superJumpCooldown=superJumpCooldownTime;
+
+}
+
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
 
 document.addEventListener("keydown",function(e){
 
 if(e.code==="Space"){
+
 e.preventDefault();
 jump();
+
 }
 
 });
+
 
 canvas.addEventListener("click",function(){
 jump();
 });
 
+
 canvas.addEventListener("touchstart",function(e){
+
 e.preventDefault();
 jump();
+
 },{passive:false});
 
 
@@ -250,6 +278,7 @@ ctx.fillRect(0,0,W,H);
 /* Moon */
 
 ctx.fillStyle="rgba(240,249,255,.9)";
+
 ctx.beginPath();
 ctx.arc(900,170,70,0,Math.PI*2);
 ctx.fill();
@@ -276,9 +305,11 @@ ctx.fillStyle="rgba(239,250,255,.9)";
 ctx.fillRect(x,y,120*s,30*s);
 
 ctx.beginPath();
+
 ctx.arc(x+25*s,y,35*s,0,Math.PI*2);
 ctx.arc(x+65*s,y-20*s,45*s,0,Math.PI*2);
 ctx.arc(x+105*s,y,35*s,0,Math.PI*2);
+
 ctx.fill();
 
 }
@@ -290,11 +321,10 @@ ctx.fill();
 
 function drawMountains(){
 
-/* back mountains */
-
 ctx.fillStyle="#69b4ed";
 
 ctx.beginPath();
+
 ctx.moveTo(0,450);
 ctx.lineTo(160,335);
 ctx.lineTo(280,455);
@@ -306,14 +336,14 @@ ctx.lineTo(1000,340);
 ctx.lineTo(1100,430);
 ctx.lineTo(1100,550);
 ctx.lineTo(0,550);
+
 ctx.fill();
 
-
-/* darker mountains */
 
 ctx.fillStyle="#55a4e2";
 
 ctx.beginPath();
+
 ctx.moveTo(0,470);
 ctx.lineTo(180,380);
 ctx.lineTo(290,475);
@@ -325,20 +355,21 @@ ctx.lineTo(1020,390);
 ctx.lineTo(1100,440);
 ctx.lineTo(1100,550);
 ctx.lineTo(0,550);
+
 ctx.fill();
 
-
-/* mountain snow */
 
 ctx.fillStyle="#8bcaf0";
 
 ctx.beginPath();
+
 ctx.moveTo(720,300);
 ctx.lineTo(760,350);
 ctx.lineTo(800,330);
 ctx.lineTo(850,430);
 ctx.lineTo(900,460);
 ctx.lineTo(820,350);
+
 ctx.closePath();
 ctx.fill();
 
@@ -356,8 +387,8 @@ var y=270;
 
 ctx.fillStyle="#5da8e1";
 
-ctx.fillRect(x,y+40,12,80);
-ctx.fillRect(x+75,y+40,12,80);
+ctx.fillRect(x,y+40,12,120);
+ctx.fillRect(x+75,y+40,12,120);
 
 ctx.fillRect(x-10,y+30,97,12);
 ctx.fillRect(x-20,y+20,117,10);
@@ -412,6 +443,7 @@ ctx.fillRect(wx,wy,7,9);
 }
 
 ctx.fillStyle="#5199d3";
+
 }
 
 }
@@ -446,7 +478,7 @@ ctx.stroke();
 
 
 /* =========================
-   ROAD
+   GROUND
 ========================= */
 
 function drawGround(){
@@ -461,7 +493,7 @@ ctx.fillStyle="#394c61";
 ctx.fillRect(0,585,W,6);
 
 
-/* grass */
+/* Grass */
 
 ctx.fillStyle="#75bd5b";
 
@@ -488,7 +520,7 @@ var y=player.y;
 var run=Math.floor(animation/7)%2;
 
 
-/* shadow */
+/* Shadow */
 
 ctx.fillStyle="rgba(0,0,0,.18)";
 
@@ -497,7 +529,7 @@ ctx.ellipse(x+35,590,35,7,0,0,Math.PI*2);
 ctx.fill();
 
 
-/* backpack */
+/* Backpack */
 
 ctx.fillStyle="#202d48";
 ctx.fillRect(x+2,y+38,24,40);
@@ -506,14 +538,13 @@ ctx.fillStyle="#33486b";
 ctx.fillRect(x-3,y+48,13,27);
 
 
-/* back arm */
+/* Back arm */
 
 ctx.fillStyle="#efbd98";
-
 ctx.fillRect(x+5,y+45,10,30);
 
 
-/* hair */
+/* Hair */
 
 ctx.fillStyle="#171c2d";
 
@@ -530,27 +561,29 @@ ctx.lineTo(x+67,y+10);
 ctx.lineTo(x+62,y+25);
 ctx.lineTo(x+65,y+38);
 ctx.lineTo(x+10,y+38);
-ctx.closePath();
 
+ctx.closePath();
 ctx.fill();
 
 
-/* face */
+/* Face */
 
 ctx.fillStyle="#f2c39f";
 
 ctx.beginPath();
+
 ctx.moveTo(x+18,y+20);
 ctx.lineTo(x+55,y+20);
 ctx.lineTo(x+58,y+48);
 ctx.lineTo(x+45,y+57);
 ctx.lineTo(x+22,y+52);
 ctx.lineTo(x+15,y+40);
+
 ctx.closePath();
 ctx.fill();
 
 
-/* hair fringe */
+/* Hair fringe */
 
 ctx.fillStyle="#171c2d";
 
@@ -559,38 +592,37 @@ ctx.fillRect(x+27,y+13,15,15);
 ctx.fillRect(x+40,y+18,19,12);
 
 
-/* eye */
+/* Eye */
 
 ctx.fillStyle="#182238";
-
 ctx.fillRect(x+39,y+31,7,5);
 
 
-/* nose */
+/* Nose */
 
 ctx.fillStyle="#d99c7c";
 ctx.fillRect(x+49,y+39,5,3);
 
 
-/* neck */
+/* Neck */
 
 ctx.fillStyle="#e5aa88";
 ctx.fillRect(x+34,y+49,14,12);
 
 
-/* shirt */
+/* Shirt */
 
 ctx.fillStyle="#315d9a";
 ctx.fillRect(x+19,y+57,39,39);
 
 
-/* shirt highlight */
+/* Shirt highlight */
 
 ctx.fillStyle="#416fac";
 ctx.fillRect(x+22,y+61,8,30);
 
 
-/* front arm */
+/* Front arm */
 
 ctx.fillStyle="#efbd98";
 
@@ -600,14 +632,12 @@ if(run===0){
 
 ctx.translate(x+53,y+60);
 ctx.rotate(-.25);
-
 ctx.fillRect(0,0,10,35);
 
 }else{
 
 ctx.translate(x+53,y+60);
 ctx.rotate(.25);
-
 ctx.fillRect(0,0,10,35);
 
 }
@@ -615,7 +645,7 @@ ctx.fillRect(0,0,10,35);
 ctx.restore();
 
 
-/* legs */
+/* Legs */
 
 ctx.fillStyle="#263c61";
 
@@ -632,7 +662,7 @@ ctx.fillRect(x+43,y+94,14,35);
 }
 
 
-/* shoes */
+/* Shoes */
 
 ctx.fillStyle="#e8edf5";
 
@@ -671,15 +701,17 @@ ctx.strokeStyle="#70452f";
 ctx.lineWidth=6;
 
 ctx.beginPath();
+
 ctx.moveTo(x+8,y+8);
 ctx.lineTo(x+62,y+72);
+
 ctx.moveTo(x+62,y+8);
 ctx.lineTo(x+8,y+72);
+
 ctx.stroke();
 
 ctx.strokeStyle="#b77a4e";
 ctx.lineWidth=3;
-
 ctx.strokeRect(x+8,y+8,54,64);
 
 }
@@ -701,9 +733,11 @@ ctx.lineWidth=4;
 for(var i=0;i<3;i++){
 
 ctx.beginPath();
+
 ctx.moveTo(x+i*30,y+50);
 ctx.lineTo(x+15+i*30,y);
 ctx.lineTo(x+30+i*30,y+50);
+
 ctx.closePath();
 
 ctx.fill();
@@ -725,7 +759,9 @@ if(c.collected)return;
 ctx.fillStyle="#ffc928";
 
 ctx.beginPath();
+
 ctx.ellipse(c.x,c.y,11,20,0,0,Math.PI*2);
+
 ctx.fill();
 
 ctx.strokeStyle="#fff1a1";
@@ -768,6 +804,7 @@ ctx.font="bold 46px Poppins";
 
 ctx.fillText("Backbench",55,65);
 ctx.fillText("Runner",95,112);
+
 }
 
 
@@ -778,7 +815,6 @@ ctx.fillText("Runner",95,112);
 function drawStart(){
 
 ctx.fillStyle="rgba(12,29,58,.94)";
-
 ctx.fillRect(390,150,320,210);
 
 ctx.strokeStyle="#315d9a";
@@ -794,7 +830,6 @@ ctx.fillText("PRESS SPACE",550,220);
 ctx.fillText("TO START",550,270);
 
 ctx.font="18px Poppins";
-
 ctx.fillStyle="#9ab8e2";
 
 ctx.fillText("(or tap anywhere)",550,315);
@@ -836,10 +871,38 @@ ctx.textAlign="left";
 
 function update(){
 
+/* Super Jump cooldown */
+
+if(superJumpCooldown>0){
+superJumpCooldown--;
+}
+
+
+/* Update button */
+
+var superButton=document.getElementById("superJumpButton");
+
+if(superJumpCooldown<=0){
+
+superButton.innerHTML="🚀 SUPER JUMP";
+superButton.disabled=false;
+
+}else{
+
+superButton.innerHTML="⏳ RELOAD: "+Math.ceil(superJumpCooldown/60)+"s";
+superButton.disabled=true;
+
+}
+
+
 if(!gameStarted||gameOver)return;
+
 
 animation++;
 distance++;
+
+
+/* Player movement */
 
 player.velocity+=.75;
 player.y+=player.velocity;
@@ -852,6 +915,9 @@ player.jumping=false;
 
 }
 
+
+/* Move objects */
+
 obstacle.x-=speed;
 spikes.x-=speed;
 
@@ -862,7 +928,7 @@ coins[i].x-=speed;
 }
 
 
-/* crate reset */
+/* Crate reset */
 
 if(obstacle.x<-100){
 
@@ -874,7 +940,7 @@ speed+=.12;
 }
 
 
-/* spike reset */
+/* Spike reset */
 
 if(spikes.x<-120){
 
@@ -883,7 +949,7 @@ spikes.x=1300+Math.random()*400;
 }
 
 
-/* coins reset */
+/* Coin reset */
 
 for(var i=0;i<coins.length;i++){
 
@@ -898,11 +964,170 @@ coins[i].collected=false;
 }
 
 
-/* crate collision */
+/* Crate collision */
 
 if(
 player.x+48>obstacle.x &&
 player.x+10<obstacle.x+obstacle.width &&
+player.y+player.height>obstacle.y
+){
+
+endGame();
+
+}
+
+
+/* Spike collision */
+
+if(
+player.x+50>spikes.x &&
+player.x+15<spikes.x+spikes.width &&
+player.y+player.height>spikes.y
+){
+
+endGame();
+
+}
+
+
+/* Coin collision */
+
+for(var i=0;i<coins.length;i++){
+
+var c=coins[i];
+
+if(
+!c.collected &&
+player.x+player.width>c.x-15 &&
+player.x<c.x+15 &&
+player.y+player.height>c.y-20 &&
+player.y<c.y+20
+){
+
+c.collected=true;
+score+=5;
+
+}
+
+}
+
+}
+
+
+/* =========================
+   END GAME
+========================= */
+
+function endGame(){
+
+gameOver=true;
+
+if(score>best){
+
+best=score;
+
+localStorage.setItem("backbenchBest",best);
+
+}
+
+}
+
+
+/* =========================
+   DRAW
+========================= */
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+drawSky();
+drawMountains();
+drawCity();
+drawTorii();
+drawWater();
+drawGround();
+
+drawTitle();
+
+drawCrate();
+drawSpikes();
+
+for(var i=0;i<coins.length;i++){
+
+drawCoin(coins[i]);
+
+}
+
+drawPlayer();
+drawScore();
+
+if(!gameStarted){
+
+drawStart();
+
+}
+
+if(gameOver){
+
+drawGameOver();
+
+}
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restart(){
+
+gameStarted=false;
+gameOver=false;
+
+score=0;
+speed=6;
+animation=0;
+
+superJumpCooldown=0;
+
+player.x=105;
+player.y=485;
+player.velocity=0;
+player.jumping=false;
+
+obstacle.x=900;
+spikes.x=1250;
+
+coins=[
+{x:1050,y:430,collected:false},
+{x:1130,y:390,collected:false},
+{x:1210,y:430,collected:false}
+];
+
+}
+
+
+/* =========================
+   GAME LOOP
+========================= */
+
+function gameLoop(){
+
+update();
+draw();
+
+requestAnimationFrame(gameLoop);
+
+}
+
+gameLoop();
+
+</script>
+
+</body>
+</html>er.x+10<obstacle.x+obstacle.width &&
 player.y+player.height>obstacle.y
 ){
 
