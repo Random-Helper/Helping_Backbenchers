@@ -114,9 +114,11 @@ border-width:2px;
 <h1>🎮 Backbench Runner</h1>
 
 <div class="game-box">
+
 <canvas id="game" width="1100" height="650"></canvas>
 
 <div class="controls">
+
 <div class="control">
 <div class="key">SPACE</div>
 <div>JUMP</div>
@@ -131,11 +133,14 @@ border-width:2px;
 <div>★</div>
 <div>GET THE HIGHEST SCORE</div>
 </div>
+
 </div>
 </div>
 
 <button onclick="restart()">🔄 Restart</button>
+
 <a class="back" href="index.html">← Back to Home</a>
+
 <button id="superJumpButton" onclick="superJump()">🚀 SUPER JUMP</button>
 
 <script>
@@ -245,11 +250,9 @@ jump();
 
 });
 
-
 canvas.addEventListener("click",function(){
 jump();
 });
-
 
 canvas.addEventListener("touchstart",function(e){
 
@@ -878,7 +881,7 @@ superJumpCooldown--;
 }
 
 
-/* Update button */
+/* Update Super Jump button */
 
 var superButton=document.getElementById("superJumpButton");
 
@@ -1039,7 +1042,7 @@ localStorage.setItem("backbenchBest",best);
 
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(0,0,W,H);
 
 drawSky();
 drawMountains();
@@ -1091,152 +1094,6 @@ speed=6;
 animation=0;
 
 superJumpCooldown=0;
-
-player.x=105;
-player.y=485;
-player.velocity=0;
-player.jumping=false;
-
-obstacle.x=900;
-spikes.x=1250;
-
-coins=[
-{x:1050,y:430,collected:false},
-{x:1130,y:390,collected:false},
-{x:1210,y:430,collected:false}
-];
-
-}
-
-
-/* =========================
-   GAME LOOP
-========================= */
-
-function gameLoop(){
-
-update();
-draw();
-
-requestAnimationFrame(gameLoop);
-
-}
-
-gameLoop();
-
-</script>
-
-</body>
-</html>er.x+10<obstacle.x+obstacle.width &&
-player.y+player.height>obstacle.y
-){
-
-endGame();
-
-}
-
-
-/* spike collision */
-
-if(
-player.x+50>spikes.x &&
-player.x+15<spikes.x+spikes.width &&
-player.y+player.height>spikes.y
-){
-
-endGame();
-
-}
-
-
-/* coin collision */
-
-for(var i=0;i<coins.length;i++){
-
-var c=coins[i];
-
-if(
-!c.collected &&
-player.x+player.width>c.x-15 &&
-player.x<c.x+15 &&
-player.y+player.height>c.y-20 &&
-player.y<c.y+20
-){
-
-c.collected=true;
-score+=5;
-
-}
-
-}
-
-}
-
-
-function endGame(){
-
-gameOver=true;
-
-if(score>best){
-
-best=score;
-localStorage.setItem("backbenchBest",best);
-
-}
-
-}
-
-
-/* =========================
-   DRAW
-========================= */
-
-function draw(){
-
-ctx.clearRect(0,0,W,H);
-
-drawSky();
-drawMountains();
-drawCity();
-drawTorii();
-drawWater();
-drawGround();
-
-drawTitle();
-
-drawCrate();
-drawSpikes();
-
-for(var i=0;i<coins.length;i++){
-drawCoin(coins[i]);
-}
-
-drawPlayer();
-drawScore();
-
-if(!gameStarted){
-drawStart();
-}
-
-if(gameOver){
-drawGameOver();
-}
-
-}
-
-
-/* =========================
-   RESTART
-========================= */
-
-function restart(){
-
-gameStarted=false;
-gameOver=false;
-
-score=0;
-speed=6;
-animation=0;
 
 player.x=105;
 player.y=485;
